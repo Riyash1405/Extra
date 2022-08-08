@@ -1,0 +1,105 @@
+{% extends "scts/base.html" %}
+
+
+{% block title %}
+<title>Particpant Participation Page</title>
+{% endblock title %}
+
+
+{% block content %}
+<div class="box">
+    <div class="event-box2">        
+        <h3 style="width: 350px;" id="chngtxt">Show Upcoming Events</h3>
+        <button onclick="showhide()" style="background-color: white; color: black; height: 28px; width: 30px;"><img src="/static/visibility_black_24dp.svg" id="chngimg"></img></button>
+    </div>
+    <div class="event-box" id="event-box">
+        {% if event_list %}
+            {% for event in event_list %}
+            <div style="margin-bottom: 15px;">
+                <h4 style="margin-bottom: 10px;">
+                    <b>{{event.name}} </b>
+                </h4>
+                <p> <b>Event ID: </b>{{event.id}}</p>
+                <p> <b>Description: </b> {{event.desc}} </p>
+                <!-- <p> {{event.poster_link}} </p> -->
+                <p> <b>Date(s): </b>{{event.from_date}} <b> - </b>{{event.to_date}}</p>
+                <p> <b>Registration Deadline: </b>{{event.deadline}} </p>
+                <hr>
+            </div>
+            {% endfor %}
+        {% else %}
+            <h4>Currently no event's registration is open</h4>
+        {% endif%}
+        
+    </div>
+    <div class="form-box">
+        <h1>Participation Page</h1>
+        {% if messages %}
+        <ul class="messages">            
+            <li>{{ messages }}</li>            
+        </ul>
+        {% endif %}
+        {% if success %}
+        <ul class="success" style="color: #05cd43">            
+            <li>{{ success }}</li>            
+        </ul>
+        {% endif %}
+        <form class="myForm" action="/participant_register" method="post">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="participant_name">Participant Name</label>
+                <input type="text" class="form-control" name="participant_name" id="participant_name" required>
+            </div>
+            <div class="form-group">
+                <label for="contact_no">Contact No</label>
+                <input type="text" class="form-control" name="contact_no" id="contact_no" maxlength="10" required>
+            </div>
+            <div class="form-group">
+                <label for="participant_email">Email</label>
+                <input type="email" class="form-control" name="participant_email" id="participant_email" required>
+            </div>
+            <div class="form-group">
+                {% comment %} <label for="participant_email">Email</label>
+                <input type="email" class="form-control" name="participant_email" id="participant_email" required> {% endcomment %}
+            </div>
+            <div class="form-group">
+                <p>Event</p>    
+                {% if event_list %}
+                    {% for event in event_list %}                    
+                    <div class="inline-input" >
+                        <label for="{{event.name}}">{{event.name}}</label>
+                        <input type="radio" id={{event.name}} name=event_name value="{{event.name}}">                    
+                    </div>
+                    {% endfor %} 
+                {% else %}
+                    <p>Event's not available</p>            
+                {% endif %}               
+            </div>
+           
+            <div class="form-group">
+                <p>Registration Type</p>
+                <div class="inline-input">
+                    <label for="Individual">Individual</label>
+                    <input onclick="hideppl()" type="radio" id="Individual" name="registration_type" value="Individual">
+                </div>
+                <div class="inline-input">
+                    <label for="Group">Group</label>
+                    <input onclick="showppl()" type="radio" id="Group" name="registration_type" value="Group">
+                </div>
+            </div>
+            <div class="form-group line-form-group" id="number-ppl">
+                <label for="no_of_people">No of People</label>
+                <input type="number" class="form-control" name="no_of_people" id="no_of_people" value="1" min="1">
+            </div>                         
+            <div class="form-group">
+                <a href="/">Back</a>                
+            </div>
+            <div class="form-group submit-btn">                
+                <button type="submit" class="btn btn-primary">Submit</button>      
+            </div>
+
+        </form>    
+
+    </div>
+</div>
+{% endblock content %}

@@ -1,0 +1,184 @@
+*{
+ margin: 0;   
+ padding: 0;
+ /* background-color: #f8f9fa; */
+  
+}
+ /* body{
+  background-color: #f8f9fa;
+}  */
+
+label{
+  font-family: 'Rokkitt', serif;
+  font-size: 16px;
+  color: #7c7c7c;
+}
+
+input {
+  border: none;
+  border-bottom: 2px solid rgb(190, 190, 190);
+  width: 90%;  
+  font-size: 13px;
+  letter-spacing: 1.5px;
+}
+
+input:focus {
+  outline: none;
+  box-shadow: none;
+  border-bottom: 2px solid rgb(72 166 234);
+}
+
+a:link {
+  text-decoration: none;
+}
+
+a:visited {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+.box{
+  display: grid;
+  grid-template-columns: 1fr;  
+  margin: 0px auto 10px auto;
+  padding-top: 30px;
+  /* background-color: #f8f9fa; */
+  height: 100vh;
+  /* position: fixed; */
+  
+}
+
+
+.form-box, .event-box, .event-box2
+{   
+  margin: auto;
+  width: 70%;  
+  padding: 30px 50px;  
+  border: 2px solid rgb(218, 218, 218);
+  background-color: #ffffff; 
+  font-family: 'Quicksand', sans-serif; 
+}
+
+#event-box{
+  display: none;
+}
+
+.event-box2{
+  display: grid;
+  grid-template-columns: 1fr 4fr;
+}
+
+.form-box h1{
+  color: rgb(72 166 234);
+}
+label{
+  display: block;
+  margin-bottom: 10px;
+}
+
+
+.myForm
+{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.form-group
+{
+  margin: 22px 22px 22px 22px;
+}
+
+.line-form-group
+{
+  grid-column-start: 1;
+  grid-column-end: 3;
+}
+
+@media (max-width:730px) {
+  .myForm{
+    grid-template-columns: 1fr;
+  }
+  .line-form-group{
+    grid-column-end:2;
+  }
+}
+
+.submit-btn{
+  text-align: center;  
+}
+
+button{
+  background-color: rgb(72 166 234);
+  width: 100px;
+  height: 40px;
+  border: none;
+  border-radius: 20px;
+  color: white;
+  font-size: 16px;
+}
+
+.inline-input
+{
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  margin-top:10px;
+}
+
+.inline-input input{
+  width:100px;
+}
+
+ul{
+  text-decoration: none;
+  list-style: none;
+  color: rgb(253, 78, 78);
+}
+
+.table {
+  /* font-family: Arial, Helvetica, sans-serif; */
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.table td, .table th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+.table th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;    
+}
+
+hr{
+  margin-top: 17px;
+}
+
+
+.home-box
+{
+  display: grid;
+  text-align: center;  
+  margin: calc(50vh - 80px) auto;  
+  width: 70%;  
+  padding: 30px 50px;  
+  border: 2px solid rgb(218, 218, 218);
+  background-color: #ffffff;
+}
+
+#number-ppl{
+  display: none;
+}
+
+.opt
+{
+  margin-top: 10px;
+}
+
+.opt:hover{
+  scale: 1;
+}

@@ -1,0 +1,25 @@
+{% extends "scts/base.html" %}
+{% load static %}
+
+
+{% block title %}    
+    <title>Home Page</title>    
+{% endblock title %}
+
+
+{% block content %}
+    <div class="home-box">
+        <div class="opt">
+            <h1><a href="club_register">Register Club</a></h1>
+        </div>        
+        <div class="opt">
+            <h1><a href="event_register">Register Event</a></h1>
+        </div>
+        <div class="opt">
+            <h1><a href="participant_register">Participant Registration</a></h1>
+        </div>        
+        <div class="opt">
+            <h1><a href="event_dashboard">Event Dashboard</a></h1>
+        </div>
+    </div>
+{% endblock content %}

@@ -1,0 +1,75 @@
+{% extends "scts/base.html" %}
+
+
+{% block title %}    
+    <title>Event Dashboard</title>    
+{% endblock title %}
+
+
+{% block content %}
+<div class="box">
+    
+    <div class="form-box">        
+        <h1>Event Dashboard</h1>
+        {% if messages %}
+        <ul class="messages">
+            <li>{{ messages }}</li>
+        </ul>
+        {% endif %}
+        {% if success %}
+        <ul class="success" style="color: #05cd43">            
+            <li>{{ success }}</li>            
+        </ul>
+        {% endif %}
+        <form class="myForm" action="/event_dashboard" method="post">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="event_id">Event ID</label>
+                <input type="number" class="form-control" name="event_id" id="event_id" min="1" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>    
+                <input type="password" class="form-control" name="password" id="password" required>                 
+            </div>
+            <div class="form-group">
+                <a href="/">Back</a>                
+            </div>
+            <div class="form-group submit-btn">                
+                <button type="submit" class="btn btn-primary">Submit</button>      
+            </div>
+        </form>
+    </div>
+
+    {% if participant_list %}
+    <div class="event-box">
+        <table class="table table-light">
+            <thead>
+                <tr>
+                    <th scope="col">Participant ID</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Contact No</th>
+                    <th scope="col">Email ID</th>                    
+                    <th scope="col">Registration Type</th>
+                    <th scope="col">No of People</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for participant in participant_list %}
+                <tr>
+                    <td> {{participant.id}}</td>
+                    <td> {{participant.participant_name}}</td>
+                    <td> {{participant.contact_no}}</td>
+                    <td> {{participant.participant_email}}</td>                                                           
+                    <td> {{participant.registration_type}}</td>                    
+                    <td> {{participant.no_of_people}}</td>                    
+                </tr>
+                
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% else %}
+     {% comment %} <h3>Nothing to Display</h3> {% endcomment %}
+    {% endif %}
+</div>
+{% endblock content %}

@@ -1,0 +1,70 @@
+{% extends "scts/base.html" %}
+
+{% block title %}    
+    <title>Club Members Registration Page</title>
+{% endblock title %}
+
+     
+
+{% block content %}
+
+<div class="box">
+    <div class="form-box">
+        <h1>Members Registration</h1>
+        {% if messages %}
+        <ul class="messages">            
+            <li>{{ messages }}</li>            
+        </ul>
+        {% endif %}
+        {% if success %}
+        <ul class="success" style="color: #05cd43;">            
+            <li>{{ success }}</li>            
+        </ul>
+        {% endif %}
+        <form class="myForm" action="/club_member_register" method="post">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" class="form-control" name="name" id="name" required>
+            </div>
+            <div class="form-group">
+                <p>Club Name</p>    
+                {% if club_list %}
+                    {% for club in club_list %}                    
+                    <div class="inline-input" >
+                        <label for="{{club.name}}">{{club.name}}</label>
+                        <input type="radio" id={{club.name}} name=club_name value="{{club.name}}">                    
+                    </div>
+                    {% endfor %} 
+                {% else %}
+                    <p>Club's not available</p>            
+                {% endif %}               
+            </div>
+            <div class="form-group">
+                <label for="position">Position</label>
+                <select id="position" name="position">
+                    <option value="President">President</option>
+                    <option value="Vice President">Vice President</option>
+                    <option value="Member">Member</option>                    
+                </select>                
+            </div>            
+            <div class="form-group">
+                <label for="contact_no">Contact No</label>
+                <input type="text" class="form-control" name="contact_no" id="contact_no" maxlength="10" required>
+            </div>                
+            <div class="form-group">
+                <label for="master_password">Password</label>
+                <input type="text" class="form-control" name="master_password" id="master_password" maxlength="10" required>
+            </div>                
+            <div class="form-group">
+                <a href="/">Back</a>                
+            </div>
+            <div class="form-group submit-btn">                
+                <button type="submit" class="btn btn-primary">Submit</button>      
+            </div>
+      
+        </form>
+    </div>
+    
+</div>
+{% endblock content %}

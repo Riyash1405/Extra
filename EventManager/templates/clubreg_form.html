@@ -1,0 +1,60 @@
+{% extends "scts/base.html" %}
+
+{% block title %}    
+    <title>Club Registration Page</title>
+{% endblock title %}
+
+
+{% block content %}
+<div class="box">
+    <div class="home-box">        
+        <div class="opt">
+            <h1><a href="club_member_register">Memeber Registration</a></h1>
+        </div>        
+    </div>
+    <div class="form-box">
+        <h1>Club Registration</h1>
+        {% if messages %}
+        <ul class="messages">            
+            <li>{{ messages }}</li>            
+        </ul>
+        {% endif %}
+        {% if success %}
+        <ul class="success" style="color: #05cd43;">            
+            <li>{{ success }}</li>            
+        </ul>
+        {% endif %}
+        <form class="myForm" action="/club_register" method="post">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="name">Club Name</label>
+                <input type="text" class="form-control" name="name" id="name" required>
+            </div>
+            <div class="form-group">
+                <label for="admin">Admin</label>
+                <input type="text" class="form-control" name="admin" id="admin" required>
+            </div>
+            <div class="form-group">
+                <label for="desc">Description</label>
+                <input type="text" class="form-control" name="desc" id="description" required>
+            </div>
+            <div class="form-group line-form-group">
+                <label for="poster_link">Poster Link</label>    
+                <input type="url" class="form-control" name="poster_link" id="poster_link">            
+            </div>                                  
+            <div class="form-group">
+                <label for="admin_email">Admin Email</label>    
+                <input type="email" class="form-control" name="admin_email" id="admin_email" required>            
+            </div>                        
+            <div class="form-group">
+                <a href="/">Back</a>                
+            </div>
+            <div class="form-group submit-btn">                
+                <button type="submit" class="btn btn-primary">Submit</button>      
+            </div>
+      
+        </form>
+    </div>
+    
+</div>
+{% endblock content %}
